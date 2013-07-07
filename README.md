@@ -8,13 +8,28 @@ updated July 2013.
 
 Usage
 -----
+```python
+import colorwheel
+
+# How many colors do you want?
+num_colors = 10
+palette = colorwheel.make_palette(num_colors)
+
+# Or do you just want to rotate through them?
+wheel = colorwheel.make_wheel(num_colors)
+```
 
 Inspiration
 -----------
 I was using [IWantHue](http://tools.medialab.sciences-po.fr/iwanthue/) for a
-while on the suggestion of Aurelia Moser, but I really wanted a python library
-which did the same thing. This is my own implementation, having not read their
-source code.
+while on the suggestion of [Aurelia Moser](aureliamoser.com), but I really
+wanted a python library which did the same thing.
+
+Of course, much of IWantHue was actually based on the excellent work of
+[Gregor Aisch](http://driven-by-data.net) on his
+[Chroma.js](github.com/gka/chroma.js). The entire utils.py file was ganked
+from either wikipedia or from this lovely library and was tested against
+Chroma using Chrome's console.
 
 License
 -------
