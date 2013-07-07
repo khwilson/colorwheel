@@ -57,8 +57,8 @@ def make_palette(num_colors=8,
 
 	potentials = [lab for lab in 
 					product((0.05 * i for i in xrange(21)),
-							(0.1 * i - 1.0 for i in xrange(21),
-							(0.1 * i - 1.0 for i in xrange(21)) 
+							(0.1 * i - 1.0 for i in xrange(21)),
+							(0.1 * i - 1.0 for i in xrange(21))) 
 					if filter_func(*lab)]
 	if estimator is None:
 		estimator = KMeans(n_clusters=num_colors,
@@ -75,7 +75,7 @@ def make_palette(num_colors=8,
 								for potential in potentials],
 							key=lambda x: x[1])[0])
 
-	return map(lab2rgb, output)
+	return [lab2rgb(*lab) for lab in output]
 
 def make_wheel(num_colors):
 	"""

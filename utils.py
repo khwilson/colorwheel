@@ -372,6 +372,13 @@ def lab2xyz(l, a, b):
 	-------
 	The xyz triple
 	"""
+	try:
+		l = float(l)
+		a = float(a)
+		b = float(b)
+	except ValueError:
+		raise ValueError("l (%s), a (%s), and b (%s) must all be (convertible "
+							+ "to) floats" % (str(l), str(a), str(b)))
 	sl = (l + 0.16) / 1.16;
 	# Standard white
 	xn, yn, zn = (0.96421, 1.00000, 0.82519)
@@ -470,6 +477,31 @@ def hcl2rgb(h, c, l):
 							+ "floats") % (str(h), str(c), str(l)))
 
 	return xyz2rgb(*lab2xyz(*hcl2lab(h, c, l)))
+
+def lab2rgb(l, a, b):
+	"""
+	Convert from lab to rgb.
+
+	Parameters
+	----------
+	l	float	The lightness
+	a	float	The sine color-opponent
+	b	float	The cosine color-opponent
+
+	Returns
+	-------
+	rgb triple with r, g, b in [0, 1]. Note that if in the conversion
+	we hit out of gamut colors, we clip to the [0, 1]^3 cube in the end.
+	"""
+	try:
+		l = float(l)
+		a = float(a)
+		b = float(b)
+	except ValueError:
+		raise ValueError("l (%s), a (%s), and b (%s) must all be (convertible "
+							+ "to) floats" % (str(l), str(a), str(b)))
+
+	return xyz2rgb(*lab2xyz(l, a, b))	
 
 def is_valid_lab(l, a, b):
 	"""
